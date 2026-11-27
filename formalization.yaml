@@ -13,7 +13,7 @@ project:
     maximum-degree vertices induce a graph of maximum degree zero.
   authors:
     - Yuvulmaster
-    - OpenAI Codex (AI-assisted mathematical and Lean development)
+    
   license: Apache-2.0
   responsible_maintainers:
     - Yuvulmaster
