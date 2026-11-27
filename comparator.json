@@ -1,0 +1,6 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": ["WOWII430c.counterexample", "WOWII430c.conjecture430c_false"],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

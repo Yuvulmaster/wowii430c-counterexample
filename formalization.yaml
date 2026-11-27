@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: A counterexample to Written on the Wall II Conjecture 430c
+  description: >-
+    A connected eleven-vertex graph refutes a proposed upper bound on
+    independent domination in Graffiti.pc Conjecture 430c. The graph
+    is the line graph of K3,3 with one additional pendant edge at an
+    original vertex on each side. Its independent domination number
+    is three, its largest open-neighborhood independence number is
+    two, the Havel–Hakimi residue of its square is one, and its
+    maximum-degree vertices induce a graph of maximum degree zero.
+  authors:
+    - Yuvulmaster
+    - OpenAI Codex (AI-assisted mathematical and Lean development)
+  license: Apache-2.0
+  responsible_maintainers:
+    - Yuvulmaster
+
+classification:
+  arxiv: [math.CO]
+  msc2020: ["05C69", "05C76"]
+
+sources:
+  - title: A counterexample to Graffiti.pc Conjecture 430c
+    type: original-proof
+    relationship: other
+    location: graffiti-430c.tex
+    note: "This repository presents the counterexample and its proof."
+  - title: "Written on the Wall II, Graffiti.pc Conjecture 430c"
+    contributors:
+      - name: Ermelinda DeLaViña
+        role: catalogue author
+    type: online catalogue
+    location: https://www.uhd.edu/academics/sciences/mathematics-statistics/wowii/index.html
+    relationship: background
+    note: "Entry 430c, announced December 8, 2010. The catalogue states the inequality and defines its invariants."
+
+status:
+  scope: >-
+    Lean proves four invariant values and connectedness for the
+    eleven-vertex witness and disproves the catalogue's universal
+    inequality. The paper also proves a family with unbounded gap.
+    Only the eleven-vertex disproof is in the Lean submission.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+
+automation:
+  methods:
+    - method: agent
+      models: ["GPT-6"]
+      framework: OpenAI Codex
+      tool_setup: "Lean, Mathlib, Lake, Python and standard Lean tactics."
+      prompting_notes: "The user requested verified counterexamples to catalogue conjectures and asked to formalize this one for Palomar."
+  spend_usd: "not tracked"
+  notes: "Codex assisted with the construction, write-up, and Lean code. Yuvulmaster directed and maintains the project."
+
+fidelity:
+  divergences: "Lean verifies the finite witness and the exact disproof. The general family in the paper is outside the Lean scope."
+
+review:
+  status: self-assessed
+  reviewers: []
+  notes: "Lean checks the witness and disproof. A separate Python script rebuilds the line graph and checks its parameters. Independent human mathematical review has not been reported."
+
+alignment:
+  namespace: WOWII430c
+  statements:
+    - source: "graffiti-430c.tex, the eleven-vertex example at k = 3"
+      lean: WOWII430c.counterexample
+      module: Solution
+      status: proved
+      note: "Connectedness and exact values of all four invariants."
+    - source: "Written on the Wall II, Conjecture 430c"
+      lean: WOWII430c.conjecture430c_false
+      module: Solution
+      status: proved
+      note: "Negation of the catalogue inequality for finite simple connected graphs on more than three vertices."
+
+acknowledgements: "Thanks to the Mathlib contributors and Ermelinda DeLaViña for the Written on the Wall II catalogue."

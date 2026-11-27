@@ -1,0 +1,85 @@
+\documentclass[10pt,letterpaper]{amsart}
+\usepackage[margin=0.84in]{geometry}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={A counterexample to Graffiti.pc Conjecture 430c},pdfauthor={Yuvulmaster}}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\title{A counterexample to Graffiti.pc Conjecture 430c}
+\author{Yuvulmaster}
+\date{}
+\begin{document}
+\begin{abstract}
+We construct line graphs of diameter two whose independent domination numbers are arbitrarily large, while the proposed upper bound is always two. The first example in the family has eleven vertices.
+\end{abstract}
+\maketitle
+An independent dominating set is an independent set such that every vertex
+outside it has a neighbor in it. Its minimum size is $i(G)$. Write $M$ for
+the maximum-degree vertices of $G$ and $\lambda_{\max}(G)$ for the largest
+independence number of a subgraph induced by the neighbors of a single
+vertex. The square $G^2$ joins vertices at distance one or two. The
+residue $\operatorname{res}$ counts the zeros left at the end of the
+Havel--Hakimi process, which repeatedly deletes a largest positive degree
+$d$, subtracts one from the next $d$ largest degrees, and reorders.
+For connected graphs of order greater than three, Conjecture~430c~\cite{wall}
+proposes
+\[
+ i(G)\le \lambda_{\max}(G)\operatorname{res}(G^2)+\Delta(G[M]).
+\]
+
+\begin{theorem}For each $k\ge3$ there is a graph on $k^2+2$ vertices with
+independent domination number $k$ and proposed upper bound two.\end{theorem}
+\begin{proof}
+Start with $K_{k,k}$, choose a vertex $a$ in its left part and a vertex $b$
+in its right part, and attach one new leaf to each of $a,b$. Call this
+bipartite graph $F$ and let $G$ be its line graph. Thus vertices of $G$
+are edges of $F$, and adjacency means sharing an endpoint.
+
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.53cm,vertex/.style={circle,fill,inner sep=1.5pt}]
+\foreach \i/\y in {1/1,2/0,3/-1}{
+  \node[vertex] (L\i) at (-1.15,\y) {};
+  \node[vertex] (R\i) at (1.15,\y) {};
+}
+\foreach \i in {1,2,3} {\foreach \j in {1,2,3} {\draw (L\i)--(R\j);}}
+\node[above,font=\small] at (L1) {$a$}; \node[above,font=\small] at (R1) {$b$};
+\node[vertex] (l) at (-2.15,1) {}; \node[vertex] (r) at (2.15,1) {};
+\draw (l)--(L1) (R1)--(r);
+\end{tikzpicture}\par
+{\footnotesize The graph $F$ for $k=3$. Its eleven edges are the vertices of $G$.}
+\end{center}
+
+Independent dominating sets of $G$ correspond exactly to maximal matchings
+of $F$. Independence gives a matching, and domination means every unused
+edge touches that matching. If some original left vertex and some original
+right vertex were both unmatched, their edge could be added. A maximal
+matching must therefore saturate all $k$ original vertices on at least one
+side, requiring at least $k$ edges. A perfect matching of the original
+$K_{k,k}$ is maximal even after the two leaves are added. Thus $i(G)=k$.
+
+Every two disjoint original edges have a cross-edge joining their endpoints.
+For a pendant edge and a disjoint original edge, the pendant edge's original
+endpoint is adjacent to the opposite-side endpoint of the original edge.
+For the two pendant edges, the joining edge is $ab$. Hence every pair of
+vertices in $G$ is at distance at most two, and disjoint edges show the
+diameter is two. In particular $G^2=K_{k^2+2}$. One Havel--Hakimi step on
+the degree sequence of $K_m$ yields the sequence of $K_{m-1}$, so its
+residue is one.
+
+The neighbors of a line-graph vertex corresponding to $xy$ are covered by
+two cliques, the other edges at $x$ and the other edges at $y$. The two
+pendant edges are independent neighbors of $ab$, so $\lambda_{\max}(G)=2$.
+Finally, the degree of $xy$ in $G$ is $d_F(x)+d_F(y)-2$. Only $a$ and $b$
+have degree $k+1$ in $F$, and $ab$ is their unique joining edge.
+Thus $G[M]$ is a single vertex and has maximum degree zero.
+The right side is $2\cdot1+0=2$, giving $3\le2$ already at $k=3$.
+\end{proof}
+
+\subsection*{Acknowledgment} OpenAI Codex assisted in finding the construction,
+checking the 11-vertex example computationally, and preparing the manuscript.
+\begin{thebibliography}{1}
+\bibitem{wall} E. DeLaVi\~na, \emph{Written on the Wall II: Conjectures of Graffiti.pc},
+University of Houston--Downtown, Conjecture~430c (December 8, 2010).
+\href{https://www.uhd.edu/academics/sciences/mathematics-statistics/wowii/index.html}{Online catalogue}.
+\end{thebibliography}
+\end{document}
